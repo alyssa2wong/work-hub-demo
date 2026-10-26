@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Work hub · 采运协作</title><style>*{box-sizing:border-box}body{margin:0;background:#f7f8fa;color:#24322f;font:14px system-ui,-apple-system,sans-serif}aside{position:fixed;width:232px;height:100vh;background:white;border-right:1px solid #e5e9e7;padding:34px 24px}.logo{display:flex;gap:12px;align-items:center;color:#15745d;text-decoration:none;font-size:32px;font-weight:800}.logo span{font-size:20px;color:#253c34}.logo small{display:block;font-size:10px;font-weight:400;color:#85928c;margin-top:5px}.nav{margin-top:50px;padding:15px;border-radius:8px;background:#eaf4ef;color:#21765e;font-weight:600}.side-note{margin:40px 15px;line-height:2;color:#a1aaa5}.workspace{position:absolute;bottom:28px;color:#6f847a;font-size:12px}main{margin-left:232px}header{height:80px;background:#fff;border-bottom:1px solid #e5e9e7;display:flex;justify-content:space-between;align-items:center;padding:0 44px}header span{color:#98a19d;margin-left:14px}select,input,textarea{font:inherit;padding:11px 12px;border:1px solid #dce3de;border-radius:7px;background:#fff;color:#34433d}section{max-width:1350px;margin:auto;padding:40px 44px}.heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px}.eyebrow{font-size:10px;letter-spacing:2px;color:#608475;font-weight:700}h1{font-size:30px;font-weight:650;letter-spacing:-1px;margin:12px 0}.muted{color:#86918b;line-height:1.7}button{background:#21775e;border:0;border-radius:7px;color:#fff;padding:12px 20px;font:inherit;cursor:pointer}button:hover{filter:brightness(.94)}button:disabled{opacity:.5;cursor:wait}.secondary{background:#eef3f0;color:#376653}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:30px}.stat{border:1px solid #e6eae7;background:#fff;border-radius:10px;padding:22px}.stat span{color:#839087;font-size:12px}.stat strong{display:block;font-size:30px;font-weight:600;margin-top:12px}.stat small{color:#9aa69e;font-size:11px}.board{background:#fff;border:1px solid #e3e9e5;border-radius:11px;overflow:hidden}.toolbar{display:flex;justify-content:space-between;align-items:center;padding:24px}.toolbar input{width:290px;background:#fafbf9}h2{font-size:17px;margin:0}h2 span{font-size:11px;color:#85948b;margin-left:8px}.tabs{display:flex;gap:22px;padding:0 24px;border-bottom:1px solid #e9edea}.tabs button{border-radius:0;background:none;color:#86958d;padding:12px 0;border-bottom:2px solid transparent;font-size:12px}.tabs button.selected{color:#21775e;border-bottom-color:#21775e}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;text-align:left;white-space:nowrap}th{background:#fafbf9;color:#8a968e;font-size:11px;font-weight:500;padding:16px 24px}td{border-top:1px solid #eff1ef;padding:22px 24px;font-size:12px}td small{display:block;color:#99a39d;margin-top:7px}.badge{display:inline-block;border-radius:5px;padding:6px 10px;background:#eff4f1;color:#597565;font-size:11px}.badge.s0{background:#fff4df;color:#b68a39}.badge.s1{background:#e9effc;color:#5b7bb3}.badge.s2{background:#f1edfc;color:#9070b6}.badge.s3{background:#e8f5ed;color:#428263}.link{background:transparent;color:#21775e;padding:4px}.empty{text-align:center;padding:50px 10px 65px;color:#94a198}.empty>div{font-size:36px;color:#7eaa94}.empty h3{font-weight:500;color:#526d5e}.empty p{font-size:12px}.empty button{margin-top:12px}.footnote{font-size:11px;color:#9aa69e;margin-top:22px}dialog{border:1px solid #e0e6e1;border-radius:14px;width:620px;max-width:94vw;padding:28px;max-height:90vh;overflow:auto;box-shadow:0 20px 90px #19352a33}dialog::backdrop{background:#142b2255}.modal-head{display:flex;justify-content:space-between;align-items:center}label{display:block;font-size:12px;margin:18px 0;color:#63776a}label input,label select,label textarea{display:block;width:100%;margin-top:8px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}textarea{resize:vertical}.description{white-space:pre-wrap;background:#f7f9f6;padding:18px;line-height:1.8}.history{border-left:2px solid #dce9df;padding:0 0 0 20px;margin:22px 0}.history p{font-size:12px;line-height:1.8}.history small{color:#95a198}.detail-meta{line-height:2;color:#6a7b70}#error{color:#b34949}@media(max-width:850px){aside{display:none}main{margin:0}section{padding:24px 16px}header{padding:0 16px;height:64px}.stats{grid-template-columns:1fr 1fr;gap:10px}.heading{gap:12px}h1{font-size:24px}.heading button{white-space:nowrap;padding:12px}.toolbar{gap:12px;padding:18px}.toolbar input{width:55%}.tabs{gap:16px;overflow:auto;white-space:nowrap}.stat{padding:18px}.grid{grid-template-columns:1fr}}
+dialog#create,dialog#screening{width:900px}dialog#detail{width:1120px}details{border:1px solid #e0e7e2;border-radius:8px;margin:12px 0;padding:14px}summary{cursor:pointer;font-weight:600;color:#426451}.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:28px}.section-title small{font-size:12px;color:#8a998f}.requirements{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}.requirements>div{padding:12px 0;border-bottom:1px solid #edf1ec;min-width:0}dt{font-size:12px;color:#89988d}dd{margin:6px 0;font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}.compare-wrap{overflow:auto;max-height:580px;border:1px solid #e2e8e3;border-radius:8px}.compare{white-space:normal;table-layout:fixed;min-width:850px}.compare th,.compare td{padding:12px 15px;vertical-align:top;line-height:1.7;overflow-wrap:anywhere;white-space:pre-wrap}.compare th{width:180px}.compare thead th{position:sticky;top:0;background:#eaf2ed;z-index:1;font-weight:600}.compare .group-row th{background:#f1f6f2;color:#49755b}.unknown{color:#b0b8b2}a{color:#21775e}.conclusion{padding:10px 20px;background:#eef5ef;border-radius:8px;margin-top:20px;white-space:pre-wrap;overflow-wrap:anywhere}.conclusion p{line-height:1.8}.principle{background:#fff7e8;color:#977b43;padding:14px;border-radius:8px;font-size:12px;line-height:1.8}#feedback-error,#screening-error,#create-error{color:#b34949}.supplier-editor h3,#create h3{margin-top:26px;font-size:14px;color:#397457}.supplier-editor summary{padding:5px}#screening-form>button{margin-top:12px}@media(max-width:650px){.requirements{grid-template-columns:1fr}.section-title{align-items:flex-start;flex-direction:column}}
+.image-field{padding:8px 0}.image-field label{margin:10px 0}.image-field input[type=file]{padding:8px;font-size:12px}.image-link{font-size:12px}.thumbnail{width:120px;height:100px;object-fit:contain;border-radius:8px;background:#f2f5f1}.image-open{padding:4px;background:#f2f5f1;border:1px solid #dfe8e0}.image-remove{font-size:11px;padding:7px 12px;margin-top:8px}.image-error{font-size:12px;color:#b34949}#image-viewer{width:900px}#image-viewer img{display:block;max-width:100%;max-height:75vh;margin:15px auto}.login-card{max-width:400px;margin:9vh auto;background:white;padding:30px;border:1px solid #dee6df;border-radius:12px}.login-card h1{font-size:24px}.shared-login{position:fixed;inset:0;z-index:5;background:#f5f8f5;overflow:auto}.shared-account{font-size:12px;color:#577764;margin-right:12px}
+</style></head>
+<body><div id="shared-login" class="shared-login"><form id="login-form" class="login-card"><p class="eyebrow">WORK HUB · TEAM</p><h1>登录团队工作区</h1><p class="muted">使用管理员分配的账号登录。运营查看自己的需求，采购和管理者查看全部需求。</p><label>邮箱<input type="email" name="email" autocomplete="username" required></label><label>密码<input type="password" name="password" autocomplete="current-password" required></label><p id="login-error" role="alert"></p><button type="submit">登录</button><p class="muted">首次登录或忘记密码，请联系管理员设置。</p></form></div><aside><a class="logo" href="#">W<span>Work hub<small>采购 · 运营协作空间</small></span></a><div class="nav active">▦　需求工作台</div><div class="side-note">让需求有回应<br>让协作有进展</div><div class="workspace">●　团队共享工作区</div></aside><main><header><div>工作空间 <span>/ 需求工作台</span></div><select id="role" aria-label="当前工作视角"><option>运营视角</option><option>采购视角</option></select><button type="button" id="sign-out" class="secondary" hidden>退出登录</button></header><section><div class="heading"><div><p class="eyebrow">PROCUREMENT WORKSPACE</p><h1>每一个需求，都有着落。</h1><p class="muted">新品开发，从运营需求到 3–5 家供应商初筛，在这里一起推进。</p></div><button id="new">＋ 新建需求</button></div><div class="stats" id="stats"></div><div class="board"><div class="toolbar"><h2>需求清单 <span id="count"></span> <button type="button" id="refresh-team" class="link">刷新</button></h2><input id="search" placeholder="搜索需求、运营或采购负责人" aria-label="搜索需求"></div><div id="tabs" class="tabs"></div><div class="table-wrap"><table><thead><tr><th>需求名称</th><th>运营 / 采购</th><th>期望样品日期</th><th>当前状态</th><th></th></tr></thead><tbody id="rows"></tbody></table></div><div id="empty" class="empty" hidden><div>▤</div><h3>把第一个需求放到这里</h3><p>填写清晰的需求，采购就能更快开始行动。</p><button id="empty-new">新建需求</button></div></div><p class="footnote">协作提示：采购反馈时，请写清结果、遇到的问题和下一步计划。</p><p id="error" role="alert"></p></section></main>
+<dialog id="create"><form id="create-form"><div class="modal-head"><h2>新建采购需求</h2><button type="button" class="close secondary">关闭</button></div><p class="muted">把需求说清楚，让采购更快接住。</p><label>需求名称 *<input name="title" required placeholder="例如：双十一活动包装礼盒"></label><div class="grid"><label>运营负责人 *<input name="requester" required></label><label>需求类型<select name="category"><option>商品采购</option><option>包材物料</option><option>供应商寻源</option><option>其他需求</option></select></label><label>需求数量 *<input name="quantity" type="number" min="1" required></label><label>期望交付日期 *<input name="deadline" type="date" required></label></div><label>预算说明<input name="budget" placeholder="例如：单价不超过 20 元，可协商"></label><label>具体需求与验收标准 *<textarea name="description" required rows="4" placeholder="用途、规格、材质、质量要求、可接受的替代方案……"></textarea></label><button type="submit">提交需求</button></form></dialog>
+<dialog id="screening"></dialog><dialog id="detail"><div id="detail-content"></div></dialog><script>(() => {
+  const config = {};
+  const template = {
+  "operations": [
+    {
+      "name": "01 产品信息",
+      "fields": [
+        {
+          "key": "op5",
+          "label": "产品名称",
+          "hint": ""
+        },
+        {
+          "key": "op6",
+          "label": "销售站点 / 国家",
+          "hint": ""
+        },
+        {
+          "key": "op7",
+          "label": "参考竞品ASIN / 链接",
+          "hint": ""
+        },
+        {
+          "key": "op8",
+          "label": "参考产品图片",
+          "hint": "可直接粘贴图片 / 图片链接"
+        },
+        {
+          "key": "op9",
+          "label": "参考产品包装图",
+          "hint": "可直接粘贴图片 / 图片链接"
+        },
+        {
+          "key": "op10",
+          "label": "产品尺寸",
+          "hint": "长×宽×高 / 单位"
+        },
+        {
+          "key": "op11",
+          "label": "产品材质",
+          "hint": ""
+        },
+        {
+          "key": "op12",
+          "label": "产品颜色",
+          "hint": ""
+        },
+        {
+          "key": "op13",
+          "label": "产品功能 / 用途",
+          "hint": ""
+        },
+        {
+          "key": "op14",
+          "label": "产品配件",
+          "hint": ""
+        },
+        {
+          "key": "op15",
+          "label": "特殊材料及工艺",
+          "hint": "无则填“无”；特殊技术参数、表面工艺集中填写"
+        }
+      ]
+    },
+    {
+      "name": "02 包装与出货",
+      "fields": [
+        {
+          "key": "op17",
+          "label": "包装方式 / 包装要求",
+          "hint": "彩盒、袋装、Logo、说明书等;有要求才填"
+        },
+        {
+          "key": "op18",
+          "label": "单套包装数量",
+          "hint": "每套 / 每袋几件;有要求才填"
+        },
+        {
+          "key": "op19",
+          "label": "外箱装箱数量",
+          "hint": "件 / 箱;有要求才填"
+        },
+        {
+          "key": "op20",
+          "label": "目标包装尺寸 / 外箱尺寸",
+          "hint": "有要求才填"
+        },
+        {
+          "key": "op21",
+          "label": "目标首单数量",
+          "hint": "件 / 套"
+        },
+        {
+          "key": "op22",
+          "label": "预计后续需求量",
+          "hint": "可选"
+        }
+      ]
+    },
+    {
+      "name": "03 商务及要求",
+      "fields": [
+        {
+          "key": "op24",
+          "label": "目标采购单价",
+          "hint": "币种、含税情况及是否含包装"
+        },
+        {
+          "key": "op25",
+          "label": "可接受MOQ",
+          "hint": ""
+        },
+        {
+          "key": "op26",
+          "label": "希望收到样品日期",
+          "hint": ""
+        },
+        {
+          "key": "op27",
+          "label": "预期大货交期",
+          "hint": ""
+        },
+        {
+          "key": "op28",
+          "label": "已知专利 / 认证要求",
+          "hint": "目标国家、认证或知识产权要求"
+        },
+        {
+          "key": "op29",
+          "label": "重点质量要求",
+          "hint": ""
+        },
+        {
+          "key": "op30",
+          "label": "不可接受项 / 其他备注",
+          "hint": ""
+        }
+      ]
+    }
+  ],
+  "suppliers": [
+    {
+      "name": "01 供应商资料",
+      "fields": [
+        {
+          "key": "sup5",
+          "label": "供应商名称"
+        },
+        {
+          "key": "sup6",
+          "label": "联系人"
+        },
+        {
+          "key": "sup7",
+          "label": "联系电话"
+        },
+        {
+          "key": "sup8",
+          "label": "注册时间"
+        },
+        {
+          "key": "sup9",
+          "label": "是否源头工厂"
+        },
+        {
+          "key": "sup10",
+          "label": "欧美出口经验"
+        },
+        {
+          "key": "sup11",
+          "label": "所在地"
+        },
+        {
+          "key": "sup12",
+          "label": "产品链接及型号"
+        }
+      ]
+    },
+    {
+      "name": "02 产品实物与差异",
+      "fields": [
+        {
+          "key": "sup13",
+          "label": "产品实物图（供应商实拍）"
+        },
+        {
+          "key": "sup14",
+          "label": "产品实物包装图（供应商实拍）"
+        },
+        {
+          "key": "sup15",
+          "label": "产品尺寸"
+        },
+        {
+          "key": "sup16",
+          "label": "产品材质"
+        },
+        {
+          "key": "sup17",
+          "label": "产品颜色"
+        },
+        {
+          "key": "sup18",
+          "label": "产品功能 / 配件"
+        },
+        {
+          "key": "sup19",
+          "label": "与运营需求的差异"
+        },
+        {
+          "key": "sup20",
+          "label": "特殊材料及工艺（如有）"
+        }
+      ]
+    },
+    {
+      "name": "03 样品",
+      "fields": [
+        {
+          "key": "sup21",
+          "label": "是否有现货样品"
+        },
+        {
+          "key": "sup22",
+          "label": "能否直接寄样"
+        },
+        {
+          "key": "sup23",
+          "label": "样品费"
+        },
+        {
+          "key": "sup24",
+          "label": "样品运费"
+        },
+        {
+          "key": "sup25",
+          "label": "样品寄出时间 / 打样周期"
+        },
+        {
+          "key": "sup26",
+          "label": "样品费可否抵货款"
+        }
+      ]
+    },
+    {
+      "name": "04 报价",
+      "fields": [
+        {
+          "key": "sup27",
+          "label": "报价单价（注明对应数量）"
+        },
+        {
+          "key": "sup28",
+          "label": "开票情况（专票/普票、税率、报价含税否）"
+        },
+        {
+          "key": "sup29",
+          "label": "MOQ"
+        },
+        {
+          "key": "sup30",
+          "label": "定制费用 / 模具费（如有）"
+        },
+        {
+          "key": "sup31",
+          "label": "包装费（如有）"
+        }
+      ]
+    },
+    {
+      "name": "05 包装出货",
+      "fields": [
+        {
+          "key": "sup32",
+          "label": "单套包装数量"
+        },
+        {
+          "key": "sup33",
+          "label": "外箱装箱数量（件/箱）"
+        },
+        {
+          "key": "sup34",
+          "label": "外箱尺寸（cm）"
+        },
+        {
+          "key": "sup35",
+          "label": "外箱毛重（kg）"
+        },
+        {
+          "key": "sup36",
+          "label": "供应商发货地"
+        },
+        {
+          "key": "sup37",
+          "label": "到工厂运费"
+        },
+        {
+          "key": "sup38",
+          "label": "大货交期"
+        }
+      ]
+    },
+    {
+      "name": "06 合规与保障",
+      "fields": [
+        {
+          "key": "sup39",
+          "label": "专利情况 / 专利号"
+        },
+        {
+          "key": "sup40",
+          "label": "有无授权证明"
+        },
+        {
+          "key": "sup41",
+          "label": "认证 / 检测报告（如有）"
+        },
+        {
+          "key": "sup42",
+          "label": "质量保障 / 售后处理"
+        }
+      ]
+    },
+    {
+      "name": "07 推荐",
+      "fields": [
+        {
+          "key": "sup43",
+          "label": "优势 / 风险 / 待确认"
+        },
+        {
+          "key": "sup44",
+          "label": "采购建议（首选 / 备选 / 不推荐）"
+        },
+        {
+          "key": "sup45",
+          "label": "备注（其他补充信息）"
+        }
+      ]
+    }
+  ]
+};
+  const nativeFetch = window.fetch.bind(window);
+  const sessionKey = 'work-hub-team-session:' + (config.url || 'unconfigured');
+  const login = document.querySelector('#shared-login');
+  const errorBox = document.querySelector('#login-error');
+  let session, profile, resolveReady;
+  window.workHubReady = new Promise(resolve => { resolveReady = resolve; });
+  let refreshPromise;
+  const configured = !!(config.url && config.publishable_key);
+  const http = async (path, options = {}, token) => {
+    const r = await nativeFetch(config.url + path, {
+      ...options,
+      headers: {'apikey': config.publishable_key, 'Content-Type': 'application/json', ...(token ? {'Authorization': 'Bearer ' + token} : {}), ...options.headers}
+    });
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok) throw Error(data.message || data.error_description || data.msg || '云服务请求失败');
+    return data;
+  };
+  function remember(value) {
+    session = {...value, expires_at: Math.floor(Date.now()/1000) + value.expires_in};
+    try { sessionStorage.setItem(sessionKey, JSON.stringify(session)); } catch { /* In-memory session remains usable. */ }
+  }
+  async function token() {
+    if (!session) throw Error('请先登录');
+    if (session.expires_at > Date.now()/1000 + 60) return session.access_token;
+    if (!refreshPromise) refreshPromise = http('/auth/v1/token?grant_type=refresh_token', {method: 'POST', body: JSON.stringify({refresh_token: session.refresh_token})})
+      .then(remember).finally(() => {refreshPromise = null;});
+    try { await refreshPromise; return session.access_token; }
+    catch { session = null; login.hidden = false; document.querySelector('main').inert = true; throw Error('登录已过期，请重新登录'); }
+  }
+  async function activate() {
+    const accessToken = await token();
+    const user = await http('/auth/v1/user', {}, accessToken);
+    const profiles = await http('/rest/v1/workhub_profiles?select=id,name,role&id=eq.' + encodeURIComponent(user.id), {}, accessToken);
+    profile = profiles[0];
+    if (!profile) throw Error('账号尚未加入工作区，请联系管理员分配角色');
+    window.workHubUser = profile;
+    login.hidden = true;
+    document.querySelector('main').inert = false;
+    document.querySelector('#sign-out').hidden = false;
+    resolveReady();
+  }
+  window.fetch = async (url, options = {}) => {
+    if (url === '/schema.json') return new Response(JSON.stringify(template), {status: 200});
+    if (!/^\/api\/requests(?:\/\d+)?$/.test(url)) return nativeFetch(url, options);
+    try {
+      const accessToken = await token();
+      const method = options.method || 'GET';
+      let result;
+      if (method === 'GET') {
+        const rows = await http('/rest/v1/workhub_requests?select=id,payload,version&order=id.desc', {}, accessToken);
+        result = rows.map(row => ({...row.payload, id: row.id, version: row.version}));
+      } else {
+        const action = JSON.parse(options.body || '{}');
+        result = await http('/rest/v1/rpc/workhub_apply', {method: 'POST', body: JSON.stringify({action, request_id: method === 'PATCH' ? Number(url.split('/').pop()) : null})}, accessToken);
+      }
+      return new Response(JSON.stringify(result), {status: 200});
+    } catch (error) { return new Response(JSON.stringify({error: error.message}), {status: 400}); }
+  };
+  document.querySelector('main').inert = true;
+  document.querySelector('#login-form').onsubmit = async event => {
+    event.preventDefault(); errorBox.textContent = '';
+    if (!configured) return;
+    const button = event.target.querySelector('button[type=submit]');button.disabled = true;
+    try {
+      const data = Object.fromEntries(new FormData(event.target));
+      const value = await http('/auth/v1/token?grant_type=password', {method: 'POST', body: JSON.stringify({email: data.email, password: data.password})});
+      remember(value); location.reload();
+    } catch (error) {errorBox.textContent = error.message;}
+    finally {button.disabled = false;}
+  };
+  document.querySelector('#sign-out').onclick = async () => {
+    try {await http('/auth/v1/logout', {method: 'POST'}, await token());} catch { /* Always clear this browser's credentials. */ }
+    try {sessionStorage.removeItem(sessionKey);} catch {}
+    location.reload();
+  };
+  if (!configured) {
+    errorBox.textContent = '团队共享版尚未接通云数据库，暂时无法登录。请联系管理员完成配置。';
+    document.querySelector('#login-form button[type=submit]').disabled = true;
+  } else {
+    try {session = JSON.parse(sessionStorage.getItem(sessionKey));} catch {}
+    if (session) activate().catch(error => {errorBox.textContent = error.message;});
+  }
+})();
+
+const $=s=>document.querySelector(s), statuses=['待采购认领','采购处理中','待运营确认','已完成','需补充'];
+let items=[],filter='全部需求',schema;
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function api(path,method='GET',data){if(method==='PATCH'&&window.workHubUser){data={...data,expected_version:items.find(i=>i.id===Number(path.slice(1)))?.version};}const r=await fetch('/api/requests'+path,{method,headers:{'Content-Type':'application/json'},body:data?JSON.stringify(data):undefined});const result=await r.json();if(!r.ok)throw Error(result.error);return result;}
+async function load(){try{items=await api('');$('#error').textContent='';render();}catch(e){$('#error').textContent='加载失败：'+e.message;}}
+function render(){
+ $('#stats').innerHTML=[['全部需求',items.length,'所有协作事项'],['待采购认领',items.filter(i=>i.status===statuses[0]).length,'等待采购开始跟进'],['采购处理中',items.filter(i=>i.status===statuses[1]||i.status===statuses[4]).length,'持续推进，及时反馈'],['待运营确认',items.filter(i=>i.status===statuses[2]).length,'采购已反馈，待确认']].map(([t,n,h])=>`<div class="stat"><span>${t}</span><strong>${n.toString().padStart(2,'0')}</strong><small>${h}</small></div>`).join('');
+ $('#tabs').innerHTML=['全部需求',...statuses].map(t=>`<button class="${filter===t?'selected':''}" data-filter="${t}">${t}</button>`).join('');
+ const q=$('#search').value.trim().toLowerCase();const list=items.filter(i=>(filter==='全部需求'||filter===i.status)&&[i.title,i.requester,i.buyer].some(v=>v.toLowerCase().includes(q)));
+ $('#count').textContent=`${items.length} 项`;$('#empty').hidden=!!list.length;$('#rows').innerHTML=list.map(i=>`<tr><td><b>${esc(i.title)}</b><small>REQ-${String(i.id).padStart(4,'0')} · ${esc(i.category)} · ${esc(i.quantity)}</small></td><td>${esc(i.requester)}<small>${esc(i.buyer||'采购待认领')}</small></td><td>${esc(i.deadline)}</td><td><span class="badge s${statuses.indexOf(i.status)}">${i.status}</span></td><td><button class="link" data-id="${i.id}">查看详情 →</button></td></tr>`).join('');
+}
+function detail(id){const i=items.find(i=>i.id===id);if(!i)return;const buyer=$('#role').value==='采购视角';let options=[];if(buyer){if(i.status===statuses[0])options=[statuses[1]];if(i.status===statuses[1])options=[statuses[2],statuses[4]];if(i.status===statuses[4]&&!window.workHubUser)options=[statuses[1]];}else{if(i.status===statuses[2])options=[statuses[3],statuses[1]];if(i.status===statuses[4])options=[statuses[1]];}
+ $('#detail-content').innerHTML=`<div class="modal-head"><h2>${esc(i.title)}</h2><button class="close secondary">关闭</button></div><p><span class="badge s${statuses.indexOf(i.status)}">${i.status==='已完成'&&i.workflow?'初筛已确认':i.status}</span></p><div class="detail-meta">运营：${esc(i.requester)} · 采购：${esc(i.buyer||'待认领')}<br>提交日期：${esc(i.submitted?.slice(0,10)||'—')}<br>首单数量：${esc(i.quantity)} · 样品期望日期：${esc(i.deadline)}<br>目标采购单价：${esc(i.budget||'未填写')}</div>${i.workflow?screeningMarkup(i,buyer):`<p class="description">${esc(i.description)}</p>`}<h2>协作记录</h2><div class="history">${i.history.map(h=>`<p><small>${esc(h.time.replace('T',' '))} · ${esc(h.status)}</small><br>${esc(h.note)}${h.actor?`<br><small>操作人：${esc(h.actor)}</small>`:''}</p>`).join('')}</div>${options.length?`<form id="feedback"><h2>${buyer?'采购跟进':'运营确认与补充'}</h2><label>采购负责人 *<input name="buyer" value="${esc(i.buyer)}" required ${!buyer&&i.buyer?'readonly':''}></label><label>更新状态<select name="status">${options.map(s=>`<option value="${s}">${s==='已完成'&&i.workflow?'确认初筛结果（不代表批准批量采购）':s}</option>`).join('')}</select></label><label>处理说明 / 运营确认意见 *<textarea name="note" required rows="3" placeholder="本次结果、遇到的问题、下一步及预计反馈时间"></textarea></label><p id="feedback-error" role="alert"></p><button type="submit">保存并反馈</button></form>`:`<p class="muted">${i.status===statuses[3]?'此需求初筛已确认。样品确认及审批后再安排批量采购。':'当前等待另一方处理，可切换工作视角查看操作。'}</p>`}`;
+ $('#detail').querySelectorAll('.image-open').forEach(b=>b.onclick=()=>openImage(b.querySelector('img').src));
+ if($('#screening-edit'))$('#screening-edit').onclick=()=>editScreening(i);
+ if($('#requirements-edit'))$('#requirements-edit').onclick=()=>editRequirements(i);
+ if($('#export'))$('#export').onclick=()=>exportCsv(i);
+ const form=$('#feedback');if(form)form.onsubmit=async e=>{e.preventDefault();const b=form.querySelector('button[type=submit]');b.disabled=true;try{await api('/'+id,'PATCH',Object.fromEntries(new FormData(form)));await load();detail(id);}catch(e){$('#feedback-error').textContent=e.message;}finally{b.disabled=false;}};
+ if(!$('#detail').open)$('#detail').showModal();
+}
+function create(){const form=$('#create-form');form.reset();form.querySelectorAll('.image-value').forEach(i=>i.value='');delete form.dataset.edit;form.elements.requester.readOnly=!!window.workHubUser; if(window.workHubUser)form.elements.requester.value=window.workHubUser.name;form.querySelectorAll('.image-field').forEach(updateImagePreview);$('#create').showModal();}
+$('#new').onclick=create;$('#empty-new').onclick=create;
+document.addEventListener('click',e=>{if(e.target.matches('.close'))e.target.closest('dialog').close();if(e.target.dataset.filter){filter=e.target.dataset.filter;render();}if(e.target.dataset.id)detail(Number(e.target.dataset.id));});
+$('#search').oninput=render;$('#role').onchange=()=>{$('#detail').close();render();};
+$('#create-form').onsubmit=async e=>{e.preventDefault();const form=e.target,b=form.querySelector('[type=submit]');b.disabled=true;try{const data=Object.fromEntries(new FormData(form)),id=form.dataset.edit;await api(id?'/'+id:'',id?'PATCH':'POST',{action:id?'requirements':undefined,workflow:'supplier-screening',requester:data.requester,details:data});form.reset();$('#create').close();await load();if(id)detail(Number(id));}catch(e){$('#create-error').textContent=e.message;}finally{b.disabled=false;}};
+
+function editRequirements(i){const form=$('#create-form');form.reset();form.dataset.edit=i.id;form.elements.requester.value=i.requester;form.elements.requester.readOnly=true;for(const f of fields(schema.operations)){form.elements[f.key].value=i.details?.[f.key]||'';const box=form.elements[f.key].closest('.image-field');if(box)updateImagePreview(box);}$('#create').showModal();}
+
+const fields=groups=>groups.flatMap(g=>g.fields);
+function fieldInput(f,value='',prefix=''){
+ const name=prefix+f.key;
+ if(['op8','op9','sup13','sup14'].includes(f.key))return imageInput(f,value,name);
+ if(f.key==='sup44')return `<label>${esc(f.label)}<select name="${name}">${['待确认','首选','备选','不推荐'].map(s=>`<option ${s===value?'selected':''}>${s}</option>`).join('')}</select></label>`;
+ return `<label>${esc(f.label)}${f.key==='op5'?' *':''}<input name="${name}" value="${esc(value)}" ${f.key==='op5'?'required':''} placeholder="${esc(f.hint||'未核实填待确认；无则填无')}" maxlength="4000"></label>`;
+}
+function displayValue(value){
+ if(!value)return '<span class="unknown">待确认</span>';
+ if(/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(value))return `<button type="button" class="image-open" aria-label="放大图片"><img class="thumbnail" alt="产品或包装图片缩略图" src="${value}" loading="lazy"></button>`;
+ if(/^https?:\/\/[^\s]+$/i.test(value))return `<a href="${esc(value)}" target="_blank" rel="noopener noreferrer">查看链接 ↗</a>`;
+ return esc(value);
+}
+function screeningMarkup(i,buyer){
+ const suppliers=i.suppliers||[],c=i.conclusion||{};
+ return `<div class="section-title"><h2>01 运营需求</h2>${!buyer&&['待采购认领','需补充'].includes(i.status)?'<button id="requirements-edit" class="secondary">补充 / 修改需求</button>':''}<button class="secondary" id="export">导出对比表 CSV</button></div>${schema.operations.map(g=>`<details><summary>${g.name}</summary><dl class="requirements">${g.fields.map(f=>`<div><dt>${esc(f.label)}</dt><dd>${displayValue(i.details?.[f.key])}</dd></div>`).join('')}</dl></details>`).join('')}<div class="section-title"><h2>02 供应商初筛 <small>${suppliers.length} / 3–5 家</small></h2>${buyer&&i.status==='采购处理中'?'<button id="screening-edit">填写 / 编辑初筛</button>':''}</div><p class="muted">按供应商资料 → 产品实物 → 样品 → 报价 → 包装出货 → 合规 → 推荐核实；未核实项标注“待确认”。</p>${suppliers.length?`<div class="compare-wrap"><table class="compare"><thead><tr><th>初筛项目</th>${suppliers.map((s,n)=>`<th>供应商 ${String.fromCharCode(65+n)}<br>${esc(s.sup5||'未填写名称')}</th>`).join('')}</tr></thead><tbody>${schema.suppliers.map(g=>`<tr class="group-row"><th colspan="${suppliers.length+1}">${g.name}</th></tr>${g.fields.map(f=>`<tr><th>${esc(f.label)}</th>${suppliers.map(s=>`<td>${displayValue(s[f.key])}</td>`).join('')}</tr>`).join('')}`).join('')}</tbody></table></div>`:'<p class="description">采购认领后，在此逐家填写供应商初筛资料。</p>'}<div class="conclusion"><h3>采购结论与下一步</h3><p>首选：${esc(c.preferred||'待确认')}　备选：${esc(c.backup||'待确认')}</p><p>推荐理由 / 风险：${esc(c.reason||'待确认')}</p><p>下一步：${esc(c.next||'待确认')}</p></div><p class="principle">实物照片及报价留档；专利和认证需核验证据；样品确认及审批后再安排批量采购。</p>`;
+}
+function editScreening(i){
+ const dialog=$('#screening');let draft=structuredClone(i.suppliers?.length?i.suppliers:[{}, {}, {}]);const conclusion=structuredClone(i.conclusion||{});
+ function draw(){
+  dialog.innerHTML=`<form id="screening-form"><div class="modal-head"><h2>供应商初筛 · ${esc(i.title)}</h2><button type="button" class="close secondary">关闭</button></div><p class="muted">可先保存草稿；提交运营前需完成 3–5 家供应商及采购结论。图片支持上传与缩略图预览；报价单及证据支持填写链接。</p><div id="supplier-editors">${draft.map((s,n)=>`<details class="supplier-editor" ${n===0?'open':''}><summary>供应商 ${String.fromCharCode(65+n)} · ${esc(s.sup5||'待填写')}</summary>${schema.suppliers.map(g=>`<h3>${g.name}</h3><div class="grid">${g.fields.map(f=>fieldInput(f,s[f.key]||'',`s${n}_`)).join('')}</div>`).join('')}${draft.length>1?`<button type="button" class="secondary remove-supplier" data-index="${n}">移除此供应商</button>`:''}</details>`).join('')}</div><button type="button" id="add-supplier" class="secondary" ${draft.length>=5?'disabled':''}>＋ 添加供应商（最多 5 家）</button><h3>采购结论</h3><div class="grid"><label>首选供应商<input name="preferred" value="${esc(conclusion.preferred||'')}" placeholder="填写与上方一致的供应商名称"></label><label>备选供应商<input name="backup" value="${esc(conclusion.backup||'')}" placeholder="填写与上方一致的供应商名称"></label></div><label>推荐理由 / 风险<textarea name="reason" rows="3">${esc(conclusion.reason||'')}</textarea></label><label>下一步<select name="next">${['','直接寄现货样','定制打样','补资料','暂缓'].map(s=>`<option value="${s}" ${s===conclusion.next?'selected':''}>${s||'请选择'}</option>`).join('')}</select></label><p id="screening-error" role="alert"></p><button type="submit">保存初筛资料</button><p class="muted">保存后回到需求详情，通过“采购跟进”提交运营确认。</p></form>`;
+  function collect(){const data=Object.fromEntries(new FormData($('#screening-form')));draft=draft.map((s,n)=>Object.fromEntries(fields(schema.suppliers).map(f=>[f.key,data[`s${n}_${f.key}`]||''])));for(const k of ['preferred','backup','reason','next'])conclusion[k]=data[k];}
+  $('#add-supplier').onclick=()=>{collect();draft.push({});draw();};
+  dialog.querySelectorAll('.remove-supplier').forEach(b=>b.onclick=()=>{collect();draft.splice(Number(b.dataset.index),1);draw();});
+  $('#screening-form').onsubmit=async e=>{e.preventDefault();collect();const b=e.target.querySelector('[type=submit]');b.disabled=true;try{await api('/'+i.id,'PATCH',{action:'screening',suppliers:draft,conclusion});await load();dialog.close();detail(i.id);}catch(e){$('#screening-error').textContent=e.message;}finally{b.disabled=false;}};
+ }
+ draw();dialog.showModal();
+}
+function exportCsv(i){
+ const rows=[['新品开发 · 运营需求'],['运营',i.requester],['提交时间',i.submitted||''],...fields(schema.operations).map(f=>[f.label,i.details?.[f.key]||'待确认']),[],['初筛项目',...(i.suppliers||[]).map(s=>s.sup5||'未具名')],...fields(schema.suppliers).map(f=>[f.label,...(i.suppliers||[]).map(s=>s[f.key]||'待确认')]),[],['首选',i.conclusion?.preferred],['备选',i.conclusion?.backup],['推荐理由 / 风险',i.conclusion?.reason],['下一步',i.conclusion?.next],[],['时间','状态','处理说明'],...i.history.map(h=>[h.time,h.status,h.note])];
+ const csv='\uFEFF'+rows.map(r=>r.map(v=>'"'+String(String(v??'').startsWith('data:image/')?'[已上传图片，请在网站中查看]':v??'').replace(/^[=+@\-\t\r]/,"'$&").replace(/"/g,'""')+'"').join(',')).join('\r\n');
+ const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=`供应商初筛-REQ-${i.id}.csv`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+async function init(){try{
+ if(window.workHubReady)await window.workHubReady;
+ const r=await fetch('/schema.json');if(!r.ok)throw Error('字段模板读取失败');schema=await r.json();
+ $('#create-form').innerHTML=`<div class="modal-head"><h2>新品开发 · 运营需求</h2><button type="button" class="close secondary">关闭</button></div><p class="muted">按产品实际情况填写；未知项注明“待确认”。采购负责补齐供应商信息。</p><label>运营负责人 *<input name="requester" required maxlength="100"></label>${schema.operations.map(g=>`<h3>${g.name}</h3><div class="grid">${g.fields.map(f=>fieldInput(f)).join('')}</div>`).join('')}<p class="muted">支持上传 JPG、PNG、WebP 图片，选择后显示缩略图。提交日期由系统自动记录。</p><p id="create-error" role="alert"></p><button type="submit">提交运营需求</button>`;
+ if(window.workHubUser){if($('#refresh-team'))$('#refresh-team').onclick=load;setInterval(()=>{if(!document.hidden&&!document.querySelector('dialog[open]'))load();},30000);$('#create-form').elements.requester.value=window.workHubUser.name;$('#create-form').elements.requester.readOnly=true;const user=window.workHubUser;const role=$('#role');role.value=user.role==='procurement'?'采购视角':'运营视角';role.disabled=['operations','procurement'].includes(user.role);$('#new').hidden=user.role==='procurement';$('#empty-new').hidden=user.role==='procurement';document.querySelector('.workspace').textContent=`● ${user.name} · ${{operations:'运营',procurement:'采购',leader:'组长',admin:'管理员'}[user.role]}`;}
+ await load();
+ }catch(e){$('#error').textContent=e.message;$('#new').disabled=true;$('#empty-new').disabled=true;}}
+function imageInput(f,value,name){return `<div class="image-field"><label>${esc(f.label)}<input class="image-value" name="${name}" type="hidden" value="${esc(value)}"><input type="file" accept="image/jpeg,image/png,image/webp" aria-label="上传${esc(f.label)}"><input class="image-link" aria-label="${esc(f.label)}链接" placeholder="也可粘贴图片链接" value="${esc(value.startsWith('data:image/')?'':value)}"></label><div class="image-preview">${value.startsWith('data:image/')?`<button type="button" class="image-open"><img class="thumbnail" alt="图片缩略图" src="${esc(value)}"></button>`:''}</div><button type="button" class="secondary image-remove">移除图片</button><p class="image-error" role="alert"></p></div>`;}
+function updateImagePreview(box){const value=box.querySelector('.image-value').value;box.querySelector('.image-preview').innerHTML=value.startsWith('data:image/')?`<button type="button" class="image-open"><img class="thumbnail" alt="图片缩略图" src="${esc(value)}"></button>`:'';box.querySelector('.image-link').value=value.startsWith('data:image/')?'':value;}
+function openImage(src){let dialog=$('#image-viewer');if(!dialog){dialog=document.createElement('dialog');dialog.id='image-viewer';dialog.innerHTML='<button type="button" class="close secondary">关闭</button><img alt="图片大图">';document.body.append(dialog);}dialog.querySelector('img').src=src;dialog.showModal();}
+document.addEventListener('click',e=>{const box=e.target.closest('.image-field');if(!box)return;if(e.target.closest('.image-remove')){box.querySelector('.image-value').value='';box.querySelector('input[type=file]').value='';updateImagePreview(box);}const button=e.target.closest('.image-open');if(button)openImage(button.querySelector('img').src);});
+document.addEventListener('input',e=>{if(e.target.matches('.image-link')){const box=e.target.closest('.image-field');box.querySelector('.image-value').value=e.target.value.trim();box.querySelector('.image-preview').innerHTML='';}});
+document.addEventListener('change',async e=>{if(!e.target.matches('.image-field input[type=file]'))return;const input=e.target,box=input.closest('.image-field'),file=input.files[0];if(!file)return;const error=box.querySelector('.image-error');error.textContent='';const submit=input.closest('form').querySelector('[type=submit]');input.closest('form').dataset.pendingImages=Number(input.closest('form').dataset.pendingImages||0)+1;submit.disabled=true;let bitmap;try{
+ if(!['image/jpeg','image/png','image/webp'].includes(file.type))throw Error('请选择 JPG、PNG 或 WebP 图片');if(file.size>10*1024*1024)throw Error('单张原图不能超过 10 MB');
+ bitmap=await createImageBitmap(file);const scale=Math.min(1,1200/Math.max(bitmap.width,bitmap.height));const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(bitmap.width*scale));canvas.height=Math.max(1,Math.round(bitmap.height*scale));const ctx=canvas.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(bitmap,0,0,canvas.width,canvas.height);const data=canvas.toDataURL('image/jpeg',.78);if(data.length>850000)throw Error('图片压缩后仍过大，请裁剪后再上传');box.querySelector('.image-value').value=data;updateImagePreview(box);
+ }catch(e){error.textContent=e.message||'无法读取图片，请选择有效图片';}finally{bitmap?.close();input.value='';const form=input.closest('form');form.dataset.pendingImages=Math.max(0,Number(form.dataset.pendingImages||1)-1);submit.disabled=Number(form.dataset.pendingImages)>0;}});
+init();
+</script></body></html>
